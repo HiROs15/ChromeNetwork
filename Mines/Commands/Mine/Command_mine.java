@@ -17,6 +17,7 @@ public class Command_mine extends PluginCommand {
 		this.addArgument(new SubCmd_setregion());
 		this.addArgument(new SubCmd_setspawn());
 		this.addArgument(new SubCmd_settings());
+		this.addArgument(new SubCmd_joinmine());
 	}
 	
 	@Override

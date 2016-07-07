@@ -4,8 +4,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.entity.CreatureSpawnEvent;
-import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -28,18 +26,18 @@ public class SpawnEvents extends PluginEvent {
 		event.setJoinMessage("");
 	}
 	
-	@EventHandler
+	/*@EventHandler
 	public void onMobSpawn(CreatureSpawnEvent event) {
 		// Check if its a spawn world
 		SpawnManager SpawnManager = (SpawnManager) Main.Managers.getManager(SpawnManager.class);
 		for(Spawn spawn : SpawnManager.getSpawns()) {
 			if(event.getLocation().getWorld().getName().equals(spawn.getSpawnLocation().getWorld().getName())) {
-				if(event.getSpawnReason() == SpawnReason.NATURAL) {
+				if(event.getSpawnReason() == SpawnReason.NATURAL || !(event.getEntity() instanceof ArmorStand)) {
 					event.setCancelled(true);
 				}
 			}
 		}
-	}
+	}*/
 	
 	@EventHandler
 	public void onWeatherChange(WeatherChangeEvent event) {

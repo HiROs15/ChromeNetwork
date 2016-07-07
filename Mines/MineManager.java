@@ -16,6 +16,7 @@ import dev.chromenetwork.prison.Managers.Manager;
 import dev.chromenetwork.prison.Mines.Mine.Mine;
 import dev.chromenetwork.prison.Mines.Mine.MineData;
 import dev.chromenetwork.prison.SerializedCraftbukkit.SerializedLocation;
+import dev.chromenetwork.prison.Spawn.SpawnManager;
 
 public class MineManager extends Manager {
 	private ArrayList<Mine> mines = new ArrayList<Mine>();
@@ -87,5 +88,33 @@ public class MineManager extends Manager {
 		Mine mine = getMine(mineName);
 		mine.getData().spawnLocation = new SerializedLocation(player.getLocation());
 		mine.save();
+	}
+	
+	public boolean isPlayerInMine(Player player) {
+		for(Mine m : mines) {
+			if(m.isPlayerInMine(player)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void joinMine(String name, Player player) {
+		SpawnManager SpawnManager = (SpawnManager) Main.Managers.getManager(SpawnManager.class);
+		if(SpawnManager.isPlayerInSpawn(player)) {
+			SpawnManager.leaveSpawn(player);
+		}
+		
+		Mine mine = getMine(name);
+		mine.joinMine(player);
+	}
+	
+	public Mine getPlayerMine(Player player) {
+		for(Mine m : mines) {
+			if(m.isPlayerInMine(player)) {
+				return m;
+			}
+		}
+		return null;
 	}
 }

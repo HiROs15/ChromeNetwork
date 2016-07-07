@@ -1,5 +1,6 @@
 package dev.chromenetwork.prison.Libs.ItemMenu.Items;
 
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -87,6 +88,9 @@ public class MenuItem {
      * @return The ItemStack.
      */
     public static ItemStack setNameAndLore(ItemStack itemStack, String displayName, List<String> lore) {
+    	if(itemStack.getType() == Material.AIR) {
+    		return itemStack;
+    	}
         ItemMeta meta = itemStack.getItemMeta();
         meta.setDisplayName(displayName);
         meta.setLore(lore);

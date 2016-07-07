@@ -27,6 +27,7 @@ public class Menu_MineSettings_Blocks extends ItemMenu {
 		int index = 0;
 		for(MineBlock b : mine.getData().blocks) {
 			this.setItem(index, new MenuBlockItem(this, mine, b));
+			index++;
 		}
 		
 		this.setItem(49, new MenuAddBlockItem(this, mine));

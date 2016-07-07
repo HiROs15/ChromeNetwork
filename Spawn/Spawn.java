@@ -75,12 +75,10 @@ public class Spawn {
 	}
 	
 	public void joinSpawn(Player player, boolean noRecord) {
-		if(!noRecord) {
-			if(this.isPlayerInSpawn(player)) {
-				ServerMessage.get().sendMessage(player, MessageType.ERROR, "You are already in spawn.");
-				return;
-			}
-			players.add(new SpawnPlayer(player));
+		if(!this.isPlayerInSpawn(player)) {
+			this.players.add(new SpawnPlayer(player));
+			this.displayJoinTitle(player);
+			this.bossBarStartup(player);
 		}
 		
 		// Teleport the player and stuff :)
@@ -88,9 +86,6 @@ public class Spawn {
 		player.setHealth(20);
 		player.setFoodLevel(20);
 		player.setGameMode(GameMode.SURVIVAL);
-		
-		this.displayJoinTitle(player);
-		this.bossBarStartup(player);
 	}
 	
 	public void joinSpawn(Player player) {
@@ -139,6 +134,7 @@ public class Spawn {
 			SpawnPlayer n = it.next();
 			if(n.getPlayer().getName().equals(player.getName())) {
 				it.remove();
+				BossBarAPI.removeAllBars(player);
 			}
 		}
 	}

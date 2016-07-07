@@ -28,10 +28,15 @@ public class Menu_Setting_EnableState extends MenuItem {
 		if(mine.getData().enabled == false) {
 			mine.getData().enabled = true;
 			mine.save();
+			
+			mine.updateState();
+			
 			menu.update(event.getPlayer());
 		} else {
 			mine.getData().enabled = false;
 			mine.save();
+			
+			mine.updateState();
 			
 			menu.update(event.getPlayer());
 		}
